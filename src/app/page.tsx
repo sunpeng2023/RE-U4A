@@ -759,8 +759,12 @@ export default function Home() {
                 <div className="space-y-8">
                   {slide.questions?.map((q, i) => currentStep >= i + 2 && (
                     <motion.div key={i} initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="p-10 bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 flex gap-8 items-start shadow-xl">
-                      <div className="p-4 bg-white/5 rounded-2xl">{q.icon}</div>
-                      <p className="text-3xl font-light leading-tight text-white">{q.q}</p>
+                      <div className="p-4 bg-white/5 rounded-2xl">
+                        {typeof q !== 'string' ? q.icon : <HelpCircle />}
+                      </div>
+                      <p className="text-3xl font-light leading-tight text-white">
+                        {typeof q === 'string' ? q : q.q}
+                      </p>
                     </motion.div>
                   ))}
                 </div>
